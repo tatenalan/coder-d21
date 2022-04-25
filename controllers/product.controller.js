@@ -6,11 +6,11 @@ class ProductController {
         this.productService = new ProductService()
     }
 
-    getProducts = async(req, res) => {
+    getProducts = async({field, value}) => {
         try {
             const id = req.params?.id
             const products = await this.productService.getProducts(id)
-            res.json(products)
+            return Object.values(products)
         } catch (e) {
             console.log(`error to get products `, e)
         }
